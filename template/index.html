@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <h1 class="main-header">BookMyCourt</h1>
+      <ul>
+        <li><a href="#"> Home</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="logout"> Logout </a></li>
+        <li><a href="{% url 'bookdesc' user.id %}">View Booking</a></li>
+        {%else%}
+        <li><a href="register"> Register / Login </a></li>
+        {%endif%}
+      </ul>
+    </header>
+
+    <div class="info">
+      <div class="info-left">
+        <div class="info-wrapper">
+          <a style="text-decoration: none; color: inherit" href="status">
+            <h1 class="info-name">View Status</h1>
+            <img
+              src="../static/Icons/info_left.svg"
+              alt=""
+              class="info-left-img"
+            />
+            <p class="info-desc">
+              Just see the status of your court sitting at the comfort of your
+              home
+            </p>
+          </a>
+        </div>
+        <div class="info-wrapper">
+          <a style="text-decoration: none; color: inherit" href="booking">
+            <h1 class="info-name">Book Now</h1>
+            <img src="../static/Icons/info_right.svg" alt="" class="info-img" />
+            <p class="info-desc">
+              Now don't need to wait in queue for your turn. Book your court in
+              advance and play endlessly
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="i">
+      <div class="i-left">
+        <div class="i-left-wrapper">
+          <h1 class="i-name">BookMyCourt</h1>
+          <p class="i-desc">
+            Now don't need to wait in queue for your turn. Book your court in
+            advance and play endlessly
+          </p>
+        </div>
+      </div>
+      <div class="i-right">
+        <img src="../static/Icons/main.svg" alt="" class="i-img" />
+      </div>
+    </div>
+
+    <div class="footer">
+      Made by
+      
+      
+      <a href="https://github.com/sap6320" target="_blank"
+        >&nbsp;&nbsp;Saurabh Anand Pandey</a
+      >
+
+      <a href="https://github.com/Sakshimnnit14" target="_blank"
+        >&nbsp;&nbsp;Saurabh kumar Mishra</a
+      >
+     
+    </div>
+  </body>
+</html>

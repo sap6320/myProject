@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href={% static "/css/court_style.css" %}>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <h1 class="main-header">BookMyCourt</h1>
+      <ul>
+        <li><a href="/"> Home</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="/logout"> Logout </a></li>
+        <li><a href="{% url 'bookdesc' user.id %}">View Booking</a></li>
+        {%else%}
+        <li><a href="/register"> Register / Login </a></li>
+        {%endif%}
+      </ul>
+    </header>
+
+    <div class="right">
+      <h1>Select the Court you want to Book</h1>
+      {% for court in court_list %}
+      <div class="hostel_details">
+        {% if user.is_authenticated %}
+        <a
+          href="{% url 'courtdesc' court.pk %}"
+          style="text-decoration: none; color: #404040"
+        >
+          {%else%}
+          <a href="/register" style="text-decoration: none; color: #404040">
+          {%endif%}
+          <div class="hostel_image">
+            <img
+              src="{{ court.court_image.url }}"
+              class="hostel_image"
+              alt=""
+            />
+          </div>
+          <div class="hostel_detail">
+            <h2>{{ court.court_name }}</h2>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="footer">
+      Made by <a href="https://github.com/sap6320" target="_blank">&nbsp;&nbsp;Saurabh Anand Pandey</a>
+      <a href="https://github.com/sap6320" target="_blank">&nbsp;&nbsp;Saurabh Kumar Mishra</a>
+        
+    </div>
+  </body>
+</html>

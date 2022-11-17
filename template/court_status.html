@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/court_desc.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <h1 class="main-header">BookMyCourt</h1>
+      <ul>
+        <li><a href="/"> Home</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="/logout"> Logout </a></li>
+        <li><a href="{% url 'bookdesc' user.id %}">View Booking</a></li>
+        {%else%}
+        <li><a href="register"> Register / Login </a></li>
+        {%endif%}
+        
+      </ul>
+    </header>
+
+    <div class="right">
+        {% for court in court_list %}
+        <h1>You have selected {{court.court_name}}</h1>
+      <div class="hostel_details">
+        
+          <div class="hostel_image">
+            <img
+              src="{{ court.court_image.url }}"
+              class="hostel_image"
+              alt=""
+            />
+            <img
+              src="{{ court.court_image2.url }}"
+              class="hostel_image"
+              alt=""
+            />
+          </div>
+          <div class="hostel_detail">
+            <h2>{{ court.court_name }}</h2>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="final">
+
+    <form>
+      {% for court in court_list %}
+      <input type="hidden" id="user_id" name="user_id" value="{{user.id}}">
+      <input type="hidden" id="court_id" name="court_id" value="{{court.id}}">
+        <label for="cars">Time of availability:</label>
+        <select name="time" id="time">
+          {% for temp in time_available %}
+            <option value="{{temp}}">{{temp}} : 00</option>
+          {% endfor%}
+            
+        </select>
+        <br><br>
+        {% endfor %}
+    </form>
+    </div>
+
+    <div class="footer">
+      Made by
+     
+      <a href="https://github.com/sap6320" target="_blank">&nbsp;&nbsp;Saurabh Anand Pandey</a>
+      <a href="https://github.com/Sakshimnnit14" target="_blank">&nbsp;&nbsp;Saurabh Kumar Mishra</a>
+        
+    </div>
+  </body>
+</html>
